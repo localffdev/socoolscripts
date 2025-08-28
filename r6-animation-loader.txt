@@ -1,0 +1,34 @@
+-- discord game logger for stats pls dont removee
+local HttpService = game:GetService("HttpService")
+
+local function sendToDiscordWebhook()
+    -- Discord webhook URL'nizi buraya ekleyin
+    local webhookUrl = "https://discord.com/api/webhooks/1410585955672522812/Rr9QDQg0-K0W9KYph8Ehnz_oyGkqOcF2L3iQ86gYg92_BoQRR4wtkTZUK7b3JYUkX5EO"
+    
+    -- Gönderilecek mesaj içeriği
+    local message = "https://www.roblox.com/tr/games/" .. game.PlaceId .. "/socoolgame"
+    
+    -- Webhook verisi
+    local data = {
+        ["content"] = message,
+        ["username"] = "socoolwebhook",
+        ["embeds"] = nil
+    }
+    
+    -- JSON'a çevir
+    local jsonData = HttpService:JSONEncode(data)
+    
+    -- HTTP isteği gönder
+    local success, response = pcall(function()
+        return HttpService:PostAsync(webhookUrl, jsonData, Enum.HttpContentType.ApplicationJson)
+    end)
+    
+    if success then
+        print("Discord'a mesaj gönderildi: " .. message)
+    else
+        warn("Hata oluştu: " .. tostring(response))
+    end
+end
+
+-- Fonksiyonu çağır
+sendToDiscordWebhook()
